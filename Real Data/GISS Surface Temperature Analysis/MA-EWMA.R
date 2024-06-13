@@ -11,16 +11,16 @@ month_map <- c("Jan" = 1, "Feb" = 2, "Mar" = 3, "Apr" = 4, "May" = 5, "Jun" = 6,
 Global$Month <- month_map[Global$Month]
 Global$Date <- as.Date(paste(Global$Year, Global$Month, "1", sep = "-"))
 
-x = Global$value
-mu = 0
-sigma = sd(x)
-n = length(x)
+x <- Global$value
+mu <- 0
+sigma <- sd(x)
+n <- length(x)
 
 # set parameter
-q=0.8
-alpha=1
-window=3
-L=4.2856
+q <- 0.8
+alpha <- 1
+window <- 3
+L <- 4.2856
 
 # calculate weight of GWMA
 wt = vj = c()

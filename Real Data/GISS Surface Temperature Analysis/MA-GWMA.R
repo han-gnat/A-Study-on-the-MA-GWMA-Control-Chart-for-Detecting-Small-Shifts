@@ -13,17 +13,17 @@ Global$Date <- as.Date(paste(Global$Year, Global$Month, "1", sep = "-"))
 
 x = Global$value
 mu = 0
-sigma=sd(x)
-n=length(x)
+sigma = sd(x)
+n = length(x)
 
 # set parameter
-q=0.8
-alpha=0.5
-window=3
-L=3.826
+q = 0.8
+alpha = 0.5
+window = 3
+L = 3.826
 
 # calculate weight of GWMA
-wt=vj=c()
+wt = vj = c()
 for(i in 1:n){ wt[i] = q^((i-1)^alpha)-q^(i^alpha) }
 for(j in 1:n){
   if(j >= window){
@@ -35,7 +35,7 @@ for(j in 1:n){
 }
 
 # compute statistic of MA-GWMA , UCL and LCL
-ma_gwma=ucl=lcl=y=c()
+ma_gwma = ucl = lcl = y = c()
 for(j in 1:n){
   zsum = sum(wt[1:j]*x[j:1]) + mu*(q^(j^alpha))
   y = c(y, zsum)

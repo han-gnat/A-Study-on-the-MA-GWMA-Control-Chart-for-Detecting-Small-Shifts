@@ -45,5 +45,5 @@ ggplot(gwma_df, aes(x = Date)) +
   theme(panel.grid=element_blank()) +
   theme(plot.title = element_text(hjust = 0.5)) +
   geom_point(data = gwma_df[exceed_indices, ], aes(x = Date, y = GWMA), color = "blue", size = 1.5) +
-  geom_text(data = gwma_df[exceed_indices, ], aes(x = Date, y = GWMA, label = format(Date, "%Y-%m")), vjust = -1,hjust=0.95, color = "blue",size=3.3)
+  geom_text(data = gwma_df[exceed_indices, ], aes(x = Date, y = GWMA, label = format(Date, "%Y-%m")), vjust = -1, hjust = 0.95, color = "blue", size = 3.3)
 

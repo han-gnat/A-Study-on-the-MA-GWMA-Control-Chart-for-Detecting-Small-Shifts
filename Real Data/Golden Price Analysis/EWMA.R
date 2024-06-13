@@ -1,6 +1,7 @@
 library(readr)
 library(ggplot2)
 
+# Load data
 Golden <- read_csv("price.csv")
 price <- Golden$price
 Date <- as.Date(Golden$Date)

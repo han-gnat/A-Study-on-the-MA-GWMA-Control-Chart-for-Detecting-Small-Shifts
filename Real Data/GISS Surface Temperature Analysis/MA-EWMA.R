@@ -53,7 +53,7 @@ for(j in 1:n){
 # Find the first index that exceeds the control limit
 exceed_indices <- which(ma_ewma > ucl)[1]
 
-ma_ewma_df <- data.frame(Date = Global$Date, MA_EWMA=ma_ewma, UCL = ucl, LCL = lcl)
+ma_ewma_df <- data.frame(Date = Global$Date, MA_EWMA = ma_ewma, UCL = ucl, LCL = lcl)
 
 # plot result
 ggplot(ma_ewma_df, aes(x = Date)) +
@@ -64,7 +64,7 @@ ggplot(ma_ewma_df, aes(x = Date)) +
   theme_bw() + 
   theme(panel.grid=element_blank())+
   theme(plot.title = element_text(hjust = 0.5))+
-  geom_text(data = ma_ewma_df[exceed_indices, ], aes(x = Date, y = MA_EWMA, label = format(Date, "%Y-%m")), vjust = -1.3,hjust=0.5, color = "blue",size=3.3)+
+  geom_text(data = ma_ewma_df[exceed_indices, ], aes(x = Date, y = MA_EWMA, label = format(Date, "%Y-%m")), vjust = -1.3, hjust = 0.5, color = "blue", size = 3.3)+
   geom_point(data = ma_ewma_df[exceed_indices, ], aes(x = Date, y = MA_EWMA), color = "blue", size = 1.5)
 
   

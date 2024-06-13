@@ -35,7 +35,7 @@ for(j in 1:n){
 }
 
 # compute statistic of MA-EWMA, UCL and LCL
-ma_ewma=ucl=lcl=y=c()
+ma_ewma = ucl = lcl = y = c()
 for(j in 1:n){
   zsum = sum(wt[1:j]*x[j:1]) + mu*(q^(j^alpha))
   y = c(y, zsum)

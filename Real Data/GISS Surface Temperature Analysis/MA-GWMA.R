@@ -45,15 +45,15 @@ for(j in 1:n){
   else{
     ma = mean(y[(j-window+1):j])
   }
-  ma_gwma[j]=ma
-  ucl[j]=mu+L*sqrt(vj[j])
-  lcl[j]=mu-L*sqrt(vj[j])
+  ma_gwma[j] = ma
+  ucl[j] = mu+L*sqrt(vj[j])
+  lcl[j] = mu-L*sqrt(vj[j])
 }
 
 # Find the first index that exceeds the control limit
 exceed_indices <- which(ma_gwma > ucl)[1]
 
-ma_gwma_df <- data.frame(Date = Global$Date, MA_GWMA=ma_gwma, UCL = ucl, LCL = lcl)
+ma_gwma_df <- data.frame(Date = Global$Date, MA_GWMA = ma_gwma, UCL = ucl, LCL = lcl)
 
 # plot result
 ggplot(ma_gwma_df, aes(x = Date)) +
@@ -64,5 +64,5 @@ ggplot(ma_gwma_df, aes(x = Date)) +
   theme_bw() + 
   theme(panel.grid=element_blank())+
   theme(plot.title = element_text(hjust = 0.5))+
-  geom_text(data = ma_gwma_df[exceed_indices, ], aes(x = Date, y = MA_GWMA, label = format(Date, "%Y-%m")), vjust = -1.5,hjust=0.7, color = "blue",size=3.3)+
+  geom_text(data = ma_gwma_df[exceed_indices, ], aes(x = Date, y = MA_GWMA, label = format(Date, "%Y-%m")), vjust = -1.5,hjust=0.7, color = "blue",size = 3.3)+
   geom_point(data = ma_gwma_df[exceed_indices, ], aes(x = Date, y = MA_GWMA), color = "blue", size = 1.5)

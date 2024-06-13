@@ -22,7 +22,7 @@ alpha <- 0.5
 window <- 3
 L <- 3.826
 
-# calculate weight of GWMA
+# weight of GWMA
 wt = vj = c()
 for(i in 1:n){ wt[i] = q^((i-1)^alpha)-q^(i^alpha) }
 for(j in 1:n){

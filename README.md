@@ -5,3 +5,5 @@ compare MA-GWMA control chart to the other control chart
 This dataset is provided by NASA's Goddard Institute \
 Data can download from https://data.giss.nasa.gov/gistemp/
 ### Application 2: Golden Price Analysis
+This dataset is provided by World Gold Council \
+Data can download from https://www.gold.org/goldhub/data/gold-prices#registration-type=google&just-verified=1

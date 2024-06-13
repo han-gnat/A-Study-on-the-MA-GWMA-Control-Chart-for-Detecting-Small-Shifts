@@ -1,4 +1,7 @@
 library(readr)
+library(ggplot2)
+
+# Load data
 Global <- read_csv("Global.csv")
 Global <- Global[841:nrow(Global),]
 
@@ -6,19 +9,21 @@ month_map <- c("Jan" = 1, "Feb" = 2, "Mar" = 3, "Apr" = 4, "May" = 5, "Jun" = 6,
                "Jul" = 7, "Aug" = 8, "Sep" = 9, "Oct" = 10, "Nov" = 11, "Dec" = 12)
 
 Global$Month <- month_map[Global$Month]
-
 Global$Date <- as.Date(paste(Global$Year, Global$Month, "1", sep = "-"))
 
 x = Global$value
 mu = 0
-sigma=sd(x)
-n=length(x)
+sigma = sd(x)
+n = length(x)
+
+# set parameter
 q=0.8
 alpha=1
 window=3
 L=4.2856
 
-wt=vj=c()
+# calculate weight of GWMA
+wt = vj = c()
 for(i in 1:n){ wt[i] = q^((i-1)^alpha)-q^(i^alpha) }
 for(j in 1:n){
   if(j >= window){
@@ -29,6 +34,7 @@ for(j in 1:n){
   }
 }
 
+# compute statistic of MA-EWMA, UCL and LCL
 ma_ewma=ucl=lcl=y=c()
 for(j in 1:n){
   zsum = sum(wt[1:j]*x[j:1]) + mu*(q^(j^alpha))
@@ -39,18 +45,17 @@ for(j in 1:n){
   else{
     ma = mean(y[(j-window+1):j])
   }
-  ma_ewma[j]=ma
-  ucl[j]=mu+L*sqrt(vj[j])
-  lcl[j]=mu-L*sqrt(vj[j])
+  ma_ewma[j] = ma
+  ucl[j] = mu+L*sqrt(vj[j])
+  lcl[j] = mu-L*sqrt(vj[j])
 }
 
+# Find the first index that exceeds the control limit
 exceed_indices <- which(ma_ewma > ucl)[1]
-print(exceed_indices)
-
-library(ggplot2)
 
 ma_ewma_df <- data.frame(Date = Global$Date, MA_EWMA=ma_ewma, UCL = ucl, LCL = lcl)
 
+# plot result
 ggplot(ma_ewma_df, aes(x = Date)) +
   geom_line(aes(y = MA_EWMA), color = "black") +
   geom_line(aes(y = UCL), color = "red", linetype = "solid") +

@@ -68,6 +68,3 @@ ggplot(ma_df, aes(x = Date)) +
   theme(plot.title = element_text(hjust = 0.5))+
   geom_text(data = ma_df[exceed_indices, ], aes(x = Date, y = MA, label = format(Date, "%Y-%m")), vjust = -1.4, hjust = 0.5, color = "blue", size = 3.3)+
   geom_point(data = ma_df[exceed_indices, ], aes(x = Date, y = MA), color = "blue", size = 1.5)
-
-
-

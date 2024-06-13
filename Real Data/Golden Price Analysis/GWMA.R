@@ -21,7 +21,7 @@ wt = vj = c()
 for(i in 1:n){wt[i] = q^((i-1)^alpha)-q^(i^alpha)}
 for(j in 1:n){vj[j] = sum(wt[1:j]*wt[1:j])*(sigma^2)}
 
-# compute statistic of EWMA, UCL and LCL
+# compute statistic of GWMA, UCL and LCL
 gwma = ucl = lcl = c()
 for(j in 1:n){
   zsum = sum(wt[1:j]*x[j:1]) + mu*(q^(j^alpha))
